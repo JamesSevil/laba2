@@ -1,6 +1,6 @@
 import java.util.Scanner
 
-fun sumOfDigits(num: Int): Int {
+fun sumOfDigits(num: Int): Int { // нахождение суммы цифр
     var sum = 0
     var number = num
     while (number != 0) {
@@ -12,6 +12,7 @@ fun sumOfDigits(num: Int): Int {
 
 fun main() {
     val scanner = Scanner(System.`in`)
+    // ввод чисел
     var n: Int
     do {
         print("Введите кол-во чисел(Больше 0): ")
@@ -25,9 +26,9 @@ fun main() {
     }
 
     print("Числа: ")
-    for (i in nums.indices) {
-        if (sumOfDigits(nums[i].toInt()) < 10) {
-            print("${nums[i]} ")
+    for (i in nums.indices) { // перебор
+        if (sumOfDigits(nums[i].toInt()) < 10) { // проверка условия
+            print("${nums[i]} ") // вывод подходящих
         }
     }
 }
