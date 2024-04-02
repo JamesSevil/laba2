@@ -1,10 +1,9 @@
 using System;
 
 class Program {
-    static int Sum_of_digits(int num) { // нахождение суммы цифр числа
+    static int SumOfDigits(int num) { // нахождение суммы чисел
         int sum = 0;
-        while (num != 0)
-        {
+        while (num != 0) {
             sum += num % 10;
             num /= 10;
         }
@@ -12,11 +11,20 @@ class Program {
     }
 
     static void Main() {
-        List<int> nums = [19, 93, 44, 27]; // ввод чисел
-        
+        // ввод чисел
+        int n;
+        do {
+            Console.Write("Введите кол-во чисел(Больше 0): ");
+        } while (!int.TryParse(Console.ReadLine(), out n) || n <= 0);
+        List<double> nums = new List<double>(n);
+        Console.Write("Введите числа: ");
+        for (int i = 0; i < n; ++i) {
+            nums.Add(double.Parse(Console.ReadLine()));
+        }
+
         Console.Write("Числа: ");
-        foreach (int num in nums) { // перебор каждого числа
-            if (Sum_of_digits(num) < 10) { // проверка условия
+        foreach (var num in nums) { // перебор каждого числа
+            if (SumOfDigits((int)num) < 10) { // проверка условия
                 Console.Write(num + " "); // вывод подходящих чисел
             }
         }
