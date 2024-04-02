@@ -1,4 +1,4 @@
-function sum_of_digits(num) {
+function sum_of_digits(num) { // нахождение суммы цифр
     let sum = 0;
     while (num !== 0) {
       sum += num % 10;
@@ -13,7 +13,7 @@ function sum_of_digits(num) {
       input: process.stdin,
       output: process.stdout
     });
-  
+    // ввод чисел
     rl.question("Введите кол-во чисел(Больше 0): ", function(n) {
       n = parseInt(n);
       if (n <= 0) {
@@ -21,15 +21,14 @@ function sum_of_digits(num) {
         rl.close();
         return;
       }
-  
       let nums = [];
       rl.question("Введите числа: ", function(input) {
         nums = input.split(' ').map(Number);
   
         console.log("Числа: ");
-        for (let i = 0; i < nums.length; ++i) {
-          if (sum_of_digits(nums[i]) < 10) {
-            process.stdout.write(nums[i] + " ");
+        for (let i = 0; i < nums.length; ++i) { // перебор чисел
+          if (sum_of_digits(nums[i]) < 10) { // проверка условия
+            process.stdout.write(nums[i] + " "); // вывод подходящих
           }
         }
   
