@@ -9,13 +9,13 @@ section .data                                                                   
     num1 dd 0                                                                                     ;
     num2 dd 0                                                                                     ;
     num3 dd 0                                                                                     ;
-    num4 dd 0                                                                                     ;                                                                        ;
+    num4 dd 0                                                                                     ;                                                                        
     MSG_1 db 0x17, "Type 1-st num: "                                                              ;
     MSG_2 db 0x17, "Type 2-nd num: "                                                              ;
     MSG_3 db 0x17, "Type 3-rd num: "                                                              ;
     MSG_4 db 0x17, "Type 4-th num: "                                                              ;
-    MSG_5 db 0x10, "EXIT CAUSE ERROR "                                                            ;                                                                                    ;
-section .bss                                                                                      ;                                                                                  ;
+    MSG_5 db 0x10, "EXIT CAUSE ERROR "                                                            ;                                                                                    
+section .bss                                                                                      ;                                                                                  
     sum resd 1                                                                                    ;
                                                                                                   ;
 ;-------------------------------------------------ФУНКЦИИ-----------------------------------------;
@@ -51,7 +51,7 @@ main:                                                                           
     lea rsi, [num1]                                                                               ;
     call scanf                                                                                    ;
     pop rbp ; Восстанавливаем стек                                                                ;
-                                                                                                  ;                                                                                         ;
+                                                                                                  ;                                                                                         
 ;-----0---------------------------------------MSG: Type num2 -------------------------------------;
     mov rax, 1                                                                                    ;
     mov rdi, 1                                                                                    ;
@@ -152,7 +152,7 @@ main:                                                                           
                                                                                                   ;
 .print_num4:                                                                                      ;
     push rbp                                                                                      ;
-    mov rdi, frmt2          				                                                      ;        
+    mov rdi, frmt2          				                                                              ;        
     mov esi, [num4]                                                                               ;
     xor rax, rax                                                                                  ;
     call printf                                                                                   ;
