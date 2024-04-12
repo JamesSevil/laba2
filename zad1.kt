@@ -1,12 +1,29 @@
-import java.util.regex.Matcher
-import java.util.regex.Pattern
+import kotlin.text.StringBuilder
 
 fun main() {
-    val str = "1001tf11flb10001" // строка
-    val regular = Pattern.compile("1(0+)1") // условие поиска
-    val matcher = regular.matcher(str) // результат
+    val str = "sd10sds101sdd100101"
+    var inState = 0
+    var out = StringBuilder()
 
-    while (matcher.find()) {
-        println(matcher.group(0)) // возвращает первое совпадение с регулярным выражением
+    for (i in str.indices) {
+        when {
+            str[i] == '1' && inState == 0 -> {
+                inState = 1
+                out.append('1')
+            }
+            str[i] == '1' && inState == 2 -> {
+                out.append('1')
+                println(out.toString())
+                inState = 0
+                continue
+            }
+            str[i] == '0' && (inState == 1 || inState == 2) -> {
+                out.append('0')
+                inState = 2
+            }
+            inState == 1 || inState == 2 -> {
+                inState = 0
+            }
+        }
     }
 }

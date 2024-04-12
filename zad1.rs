@@ -1,10 +1,24 @@
-use regex::Regex;
-
 fn main() {
-    let str = "1001tf11flb10001"; // строка
-    let regular = Regex::new(r"1[0]+1").unwrap(); // условие поиска
-    
-    for mat in regular.find_iter(str) { // вывод найденных подстрок
-        println!("{}", mat.as_str()); 
+    let str = "sd10sds101sdd100101"; // строка
+    let mut in_state = 0;
+    let mut out = String::new();
+
+    for (i, c) in str.chars().enumerate() {
+        if c == '1' && in_state == 0 {
+            in_state = 1;
+            out.push('1');
+            continue;
+        }
+        if c == '1' && in_state == 2 {
+            out.push('1');
+            println!("{}", out);
+            in_state = 0;
+        }
+        if c == '0' && (in_state == 1 || in_state == 2) {
+            out.push('0');
+            in_state = 2;
+        } else if in_state == 1 || in_state == 2 {
+            in_state = 0;
+        }
     }
 }

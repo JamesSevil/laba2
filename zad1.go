@@ -1,15 +1,30 @@
 package main
 
 import (
-	"fmt"    // пакет для форматирования и вывода
-	"regexp" // регулярное выражение
+	"fmt"
 )
 
 func main() {
-	str := "1001tf11flb10001"                // строка
-	regular := regexp.MustCompile("1(0+)1")  // условие поиска
-	result := regular.FindAllString(str, -1) // результат
-	for _, match := range result {
-		fmt.Println(match) // возвращает совпадение с регулярным выражением
+	str := "sd10sds101sdd100101" // строка
+	in := 0
+	out := ""
+	for i := 0; i < len(str); i++ {
+		if string(str[i]) == "1" && in == 0 {
+			in = 1
+			out = "1"
+			continue
+		}
+		if string(str[i]) == "1" && in == 2 {
+			out += "1"
+			fmt.Println(out)
+			in = 0
+			i--
+		}
+		if string(str[i]) == "0" && (in == 1 || in == 2) {
+			out += "0"
+			in = 2
+		} else if in == 1 || in == 2 {
+			in = 0
+		}
 	}
 }

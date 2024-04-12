@@ -1,17 +1,29 @@
 import Foundation
 
-let str = "1001tf11flb10001" // строка
-let regular = try! NSRegularExpression(pattern: "1(0+)1") // условие поиска
-let range = NSRange(str.startIndex..<str.endIndex, in: str)
+var str = "sd10sds101sdd100101"
+var inVar = 0
+var out = ""
 
-var results = [String]()
-regular.enumerateMatches(in: str, options: [], range: range) { (match, _, _) in
-    if let match = match {
-        let matchedString = String(str[Range(match.range, in: str)!])
-        results.append(matchedString)
+for i in 0..<str.count {
+    let char = str[str.index(str.startIndex, offsetBy: i)]
+    
+    if char == "1" && inVar == 0 {
+        inVar = 1
+        out = "1"
+        continue
     }
-}
-
-for result in results {
-    print(result) // возвращает первое совпадение с регулярным выражением
+    
+    if char == "1" && inVar == 2 {
+        out += "1"
+        print(out)
+        inVar = 0
+        i -= 1
+    }
+    
+    if char == "0" && (inVar == 1 || inVar == 2) {
+        out += "0"
+        inVar = 2
+    } else if inVar == 1 || inVar == 2 {
+        inVar = 0
+    }
 }

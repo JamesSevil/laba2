@@ -1,16 +1,27 @@
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class zad1 {
     public static void main(String[] args) {
-        String str = "1001tf11flb10001"; // строка
-        Pattern pattern = Pattern.compile("1(0+)1"); // условие поиска
-        Matcher matcher = pattern.matcher(str); // результат
-
-        while (matcher.find()) {
-            System.out.println(matcher.group()); // возвращает первое совпадение с регулярным выражением
-            str = str.substring(matcher.end()); // возвращает оставшуюся часть строки после последнего соответствия регулярному выражению
-            matcher = pattern.matcher(str);
+        String str = "sd10sds101sdd100101"; // строка
+        int in = 0;
+        String out = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '1' && in == 0) {
+                in = 1;
+                out = "1";
+                continue;
+            }
+            if (str.charAt(i) == '1' && in == 2) {
+                out += "1";
+                System.out.println(out);
+                in = 0;
+                i--;
+            }
+            if (str.charAt(i) == '0' && (in == 1 || in == 2)) {
+                out += "0";
+                in = 2;
+            } else if (in == 1 || in == 2) {
+                in = 0;
+            }
         }
     }
 }
