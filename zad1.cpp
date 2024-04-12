@@ -1,4 +1,3 @@
-// регулярные выражения
 #include <iostream>
 #include <string>
 
